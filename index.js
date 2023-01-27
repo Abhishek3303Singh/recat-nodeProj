@@ -130,5 +130,5 @@ app.get('/view/:mediaData', async (req, res) => {
 
 })
 app.get('/',(req, res)=>{
-    res.send(<h1>Everything is fine</h1>)
+    res.send('<h1>Everything is fine</h1>')
 })
