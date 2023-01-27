@@ -4,15 +4,23 @@ const port = 8081
 const fileUpload = require('express-fileupload')
 const path = require('path')
 
+// CONNECT .ENV FILE///////////////////////
+require ('dotenv'). config ();
+const MONGO_URI = process.env.MONGO_URI;
+////////////////////////////////
+
+
+
 ////////////////////////////////////////////////////
 ///////////////// DATABASE-CONNECTIONS/////////////
 
 const UserData = require('./model/User');
-const uri = `mongodb+srv://Abhishek:Aksingh3303@cluster0.yvzgdbe.mongodb.net/?retryWrites=true&w=majority`
+const uri = MONGO_URI
 const mongoose = require('mongoose');
 mongoose.set('strictQuery', true)
 mongoose.connect(uri, (err) => {
     if (err) {
+        // console.log(err)
         console.log("connection to MOngoDb is Failed")
     }
     else {
@@ -102,9 +110,9 @@ app.get('/view', async (req, res) => {
 
 app.get('/view/:mediaData', async (req, res) => {
     try {
-        console.log('request-image')
+        // console.log('request-image')
         // const imgName = await req.params.mediaData
-        console.log(`./mediaFolder/${req.params.mediaData}`)
+        // console.log(`./mediaFolder/${req.params.mediaData}`)
         res.sendFile(path.join(__dirname,`./mediaFolder/${req.params.mediaData}`))
         
         // res.json({
